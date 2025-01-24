@@ -1,0 +1,19 @@
+<% content_for :title, "Добавить Игру Клиенту" %>
+
+<h1>Добавить Игру для <%= @client.name %></h1>
+
+<%= form_with(model: @client_game, local: true) do |form| %>
+  <div>
+    <%= form.label :game_id, "Выберите игру" %>
+    <%= form.collection_select :game_id, Game.all, :id, :game_name, prompt: "Выберите игру" %>
+  </div>
+
+  <div>
+    <%= form.hidden_field :client_id, value: @client.id %>
+    <%= form.submit "Добавить игру" %>
+  </div>
+<% end %>
+
+<div>
+  <%= link_to 'Назад', client_client_games_path(@client) %>
+</div>

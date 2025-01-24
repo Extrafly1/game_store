@@ -1,0 +1,30 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Games" %>
+
+<h1>Games</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Game Name</th>
+      <th>Price</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @games.each do |game| %>
+      <tr>
+        <td><%= game.game_name %></td>
+        <td><%= number_to_currency(game.price) %></td>
+        <td>
+          <%= link_to 'Show', game_path(game) %> |
+          <%= link_to 'Edit', edit_game_path(game) %> |
+          <%= link_to 'Delete', game_path(game), method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'New game', new_game_path %>

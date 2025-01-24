@@ -1,0 +1,27 @@
+<%= form_with(model: game) do |form| %>
+  <% if game.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(game.errors.count, "error") %> prohibited this game from being saved:</h2>
+
+      <ul>
+        <% game.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :game_name, "Game Name" %>
+    <%= form.text_field :game_name, required: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price, "Price" %>
+    <%= form.number_field :price, step: 0.01, required: true %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,26 @@
+<% content_for :title, "Регистрация" %>
+
+<h1>Регистрация</h1>
+
+<%= form_with(model: @client, local: true) do |form| %>
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :password %>
+    <%= form.password_field :password %>
+  </div>
+
+  <div>
+    <%= form.label :password_confirmation %>
+    <%= form.password_field :password_confirmation %>
+  </div>
+
+  <div>
+    <%= form.submit "Зарегистрироваться" %>
+  </div>
+<% end %>
+
+<%= link_to 'Назад', root_path %>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    
+    <!-- CSRF Token and CSP Meta Tags -->
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <!-- Page Title -->
+    <title><%= content_for(:title) || "Game Store" %></title>
+
+    <!-- Additional Head Content -->
+    <%= yield :head %>
+
+    <!-- Manifest for PWA (Progressive Web App) -->
+    <%# Uncomment and enable PWA if needed by setting up the manifest and routes %>
+    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
+
+    <!-- Favicon and Apple Touch Icon -->
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+
+    <!-- Stylesheets -->
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+
+    <!-- Import JavaScript files -->
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <!-- Main navigation -->
+    <nav>
+      <ul>
+        <li><%= link_to 'Главная', root_path %></li> <!-- Ссылка на главную страницу -->
+        <li><%= link_to 'Таблица клиентов', clients_path %></li> <!-- Ссылка на таблицу клиентов -->
+        <li><%= link_to 'Игры', games_path %></li> <!-- Ссылка на страницу с играми -->
+      </ul>
+    </nav>
+    
+    <!-- Main content of the page -->
+    <%= yield %>
+  </body>
+</html>
+

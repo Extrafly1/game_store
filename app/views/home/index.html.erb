@@ -1,0 +1,11 @@
+<% content_for :title, "Главная страница" %>
+
+<h1>Добро пожаловать в Game Store</h1>
+
+<nav>
+  <ul>
+    <li><%= link_to 'Таблица клиентов', clients_path %></li>
+    <li><%= link_to 'Игры', games_path %></li>
+    <li><%= link_to 'Магазин', login_path %></li> <!-- Измените на login_path для перехода на страницу входа -->
+  </ul>
+</nav>

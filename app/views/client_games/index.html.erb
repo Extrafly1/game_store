@@ -1,0 +1,22 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Мои Игры" %>
+
+<h1>Мои Игры</h1>
+
+<h2>Доступные Игры</h2>
+<% @available_games.each do |game| %>
+  <div>
+    <%= game.game_name %>
+    <%= link_to 'Добавить', new_client_client_game_path(@client) %>
+  </div>
+<% end %>
+
+<h2>Мои Игры</h2>
+<% @client_games.each do |client_game| %>
+  <div>
+    <%= client_game.game.game_name %>
+  </div>
+<% end %>
+
+<%= link_to 'Выйти', logout_path %>

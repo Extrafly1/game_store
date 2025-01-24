@@ -1,0 +1,21 @@
+<% content_for :title, "Вход" %>
+
+<h1>Вход</h1>
+
+<%= form_with(url: login_path, local: true) do |form| %>
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :password %>
+    <%= form.password_field :password %>
+  </div>
+
+  <div>
+    <%= form.submit "Войти" %>
+  </div>
+<% end %>
+
+<%= link_to 'Назад', root_path %>
