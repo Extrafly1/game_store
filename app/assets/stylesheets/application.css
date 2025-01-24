@@ -8,3 +8,138 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+
+/* Общие стили */
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+
+/* Заголовки */
+
+h1,
+h2 {
+    color: #333;
+}
+
+
+/* Стили для форм */
+
+form {
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Стили для кнопок */
+
+button,
+input[type="submit"] {
+    background: #5cb85c;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover,
+input[type="submit"]:hover {
+    background: #4cae4c;
+}
+
+
+/* Стили для сообщений об ошибках */
+
+.alert {
+    color: red;
+    font-weight: bold;
+}
+
+
+/* Стили для ссылок */
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+
+/* Стили для контейнера кнопок */
+
+.button-container {
+    display: flex;
+    /* Используем flexbox для расположения в строку */
+    gap: 10px;
+    /* Промежуток между кнопками */
+    margin-top: 20px;
+    /* Отступ сверху */
+}
+
+
+/* Стили для кнопок */
+
+.btn {
+    background-color: #5cb85c;
+    /* Цвет фона */
+    color: white;
+    /* Цвет текста */
+    padding: 10px 15px;
+    /* Отступы */
+    border: none;
+    /* Убираем рамку */
+    border-radius: 5px;
+    /* Скругление углов */
+    text-decoration: none;
+    /* Убираем подчеркивание */
+    cursor: pointer;
+    /* Курсор в виде указателя */
+}
+
+.btn:hover {
+    background-color: #4cae4c;
+    /* Цвет фона при наведении */
+}
+
+
+/* Стили для навигационных ссылок */
+
+.nav-links {
+    display: flex;
+    /* Используем flexbox для расположения в строку */
+    list-style-type: none;
+    /* Убираем маркеры списка */
+    padding: 0;
+    /* Убираем отступы */
+    margin: 0;
+    /* Убираем внешние отступы */
+}
+
+.nav-links li {
+    margin-right: 20px;
+    /* Промежуток между элементами списка */
+}
+
+.nav-links a {
+    text-decoration: none;
+    /* Убираем подчеркивание */
+    color: #007bff;
+    /* Цвет текста */
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+    /* Подчеркивание при наведении */
+}

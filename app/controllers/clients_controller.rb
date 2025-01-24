@@ -25,10 +25,15 @@ class ClientsController < ApplicationController
 
     respond_to do |format|
       if @client.save
-        format.html { redirect_to @client, notice: "Client was successfully created." }
+        format.html { redirect_to @client, notice: "Клиент успешно создан." }
         format.json { render :show, status: :created, location: @client }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        # Вывод ошибок в консоль для отладки
+        puts "Ошибки: #{@client.errors.full_messages}"
+        
+        # Отображение ошибок пользователю
+        flash.now[:alert] = @client.errors.full_messages.join(", ")
+        format.html { render :new, status: :unprocessable_entity } # Возвращаемся к форме создания клиента
         format.json { render json: @client.errors, status: :unprocessable_entity }
       end
     end

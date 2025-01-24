@@ -26,7 +26,7 @@
     <link rel="apple-touch-icon" href="/icon.png">
 
     <!-- Stylesheets -->
-    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
 
     <!-- Import JavaScript files -->
     <%= javascript_importmap_tags %>
@@ -35,7 +35,7 @@
   <body>
     <!-- Main navigation -->
     <nav>
-      <ul>
+      <ul class="nav-links">
         <li><%= link_to 'Главная', root_path %></li> <!-- Ссылка на главную страницу -->
         <li><%= link_to 'Таблица клиентов', clients_path %></li> <!-- Ссылка на таблицу клиентов -->
         <li><%= link_to 'Игры', games_path %></li> <!-- Ссылка на страницу с играми -->

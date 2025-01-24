@@ -6,4 +6,5 @@ class Client < ApplicationRecord
   validates :email, presence: true, uniqueness: true
   validates :balance, numericality: { greater_than_or_equal_to: 0 }
   validates :password, presence: true, length: { minimum: 6 }, on: :create  # Валидируем пароль только при создании
+  validates :name, presence: true, uniqueness: true # Валидация на уникальность имени клиента
 end
