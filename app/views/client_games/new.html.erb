@@ -2,10 +2,14 @@
 
 <h1>Добавить Игру для <%= @client.name %></h1>
 
-<%= form_with(model: @client_game, local: true) do |form| %>
+<% if flash[:alert] %>
+  <p style="color: red;"><%= flash[:alert] %></p>
+<% end %>
+
+<%= form_with(model: @client_game, url: client_client_games_path(@client), local: true) do |form| %>
   <div>
     <%= form.label :game_id, "Выберите игру" %>
-    <%= form.collection_select :game_id, Game.all, :id, :game_name, prompt: "Выберите игру" %>
+    <%= form.collection_select :game_id, Game.all, :id, :game_name, { prompt: "Выберите игру" }, { selected: @client_game.game_id } %>
   </div>
 
   <div>

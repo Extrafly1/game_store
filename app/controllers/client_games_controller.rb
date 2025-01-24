@@ -15,6 +15,12 @@ class ClientGamesController < ApplicationController
   # GET /client_games/new
   def new
     @client_game = ClientGame.new
+    @client = Client.find(params[:client_id])
+
+    # Проверка, передан ли game_id из параметров
+    if params[:game_id]
+      @client_game.game_id = params[:game_id]
+    end
   end
 
   # GET /client_games/1/edit
@@ -26,10 +32,14 @@ class ClientGamesController < ApplicationController
     @client_game = ClientGame.new(client_game_params)
     @client = Client.find(params[:client_id])
 
+    puts "Параметры: #{params.inspect}"
+
     if @client_game.save
       redirect_to client_client_games_path(@client), notice: "Игра успешно добавлена."
     else
-      render :new
+      puts "Ошибки: #{@client_game.errors.full_messages}"
+      flash[:alert] = @client_game.errors.full_messages.join(", ")
+      redirect_to new_client_client_game_path(@client, game_id: @client_game.game_id)
     end
   end
 

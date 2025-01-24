@@ -8,7 +8,7 @@
 <% @available_games.each do |game| %>
   <div>
     <%= game.game_name %>
-    <%= link_to 'Добавить', new_client_client_game_path(@client) %>
+    <%= link_to 'Добавить игру', new_client_client_game_path(@client, game_id: game.id) %>
   </div>
 <% end %>
 
