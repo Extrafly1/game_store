@@ -6,6 +6,7 @@ class ClientGamesController < ApplicationController
   def index
     @client_games = @client.client_games.includes(:game)
     @available_games = Game.all
+    @current_balance = @client.balance || 0  # Получаем баланс клиента
   end
 
   # GET /client_games/1 or /client_games/1.json
@@ -21,6 +22,9 @@ class ClientGamesController < ApplicationController
     if params[:game_id]
       @client_game.game_id = params[:game_id]
     end
+
+    @game = Game.find(params[:game_id])  # Получаем игру по game_id
+    @current_balance = @client.balance  # Получаем текущий баланс клиента
   end
 
   # GET /client_games/1/edit
@@ -31,14 +35,22 @@ class ClientGamesController < ApplicationController
   def create
     @client_game = ClientGame.new(client_game_params)
     @client = Client.find(params[:client_id])
+    @game = Game.find(@client_game.game_id)  # Получаем игру по game_id
 
     puts "Параметры: #{params.inspect}"
 
-    if @client_game.save
-      redirect_to client_client_games_path(@client), notice: "Игра успешно добавлена."
+    # Проверка на достаточность средств
+    if @client.balance >= @game.price
+      if @client_game.save
+        @client.update(balance: @client.balance - @game.price)  # Вычитаем стоимость игры из баланса
+        redirect_to client_client_games_path(@client), notice: "Игра успешно добавлена."
+      else
+        puts "Ошибки: #{@client_game.errors.full_messages}"
+        flash[:alert] = @client_game.errors.full_messages.join(", ")
+        redirect_to new_client_client_game_path(@client, game_id: @client_game.game_id)
+      end
     else
-      puts "Ошибки: #{@client_game.errors.full_messages}"
-      flash[:alert] = @client_game.errors.full_messages.join(", ")
+      flash[:alert] = "Недостаточно средств для покупки этой игры."
       redirect_to new_client_client_game_path(@client, game_id: @client_game.game_id)
     end
   end

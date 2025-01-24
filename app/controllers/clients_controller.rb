@@ -1,4 +1,6 @@
 class ClientsController < ApplicationController
+  include ActionView::Helpers::NumberHelper
+
   before_action :set_client, only: %i[ show edit update destroy ]
 
   # GET /clients or /clients.json
@@ -62,10 +64,34 @@ class ClientsController < ApplicationController
     end
   end
 
+  def replenish_balance
+    amount = params[:amount].to_f
+    client_id = params[:client_id]  # Получаем client_id из параметров
+    @client = Client.find(client_id)  # Находим клиента по идентификатору
+    if amount > 0
+      @client.update(balance: @client.balance + amount)
+      if @client.save
+        respond_to do |format|
+          format.js { flash.now[:notice] = "Баланс успешно пополнен на #{number_to_currency(amount, unit: 'руб.')}" }
+        end
+      else
+        respond_to do |format|
+          format.js { flash.now[:alert] = "Ошибка при пополнении баланса." }
+        end
+      end
+    else
+      respond_to do |format|
+        format.js { flash.now[:alert] = "Сумма пополнения должна быть положительной." }
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_client
-      @client = Client.find(params[:id])  # используем params[:id] вместо params.expect(:id)
+      @client = Client.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to root_path, alert: "Клиент не найден."
     end
 
     # Only allow a list of trusted parameters through.

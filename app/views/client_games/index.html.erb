@@ -4,10 +4,26 @@
 
 <h1>Мои Игры</h1>
 
+<!-- Отображение текущего баланса клиента -->
+<h2>Текущий баланс: <%= number_to_currency(@current_balance, unit: "руб.") %></h2>
+
+<!-- Форма для пополнения баланса -->
+<h2>Пополнить баланс</h2>
+<%= form_with url: replenish_balance_path, method: :post do |form| %>
+  <%= hidden_field_tag :client_id, @client.id %> <!-- Скрытое поле с идентификатором клиента -->
+  <div>
+    <%= form.label :amount, "Сумма пополнения:" %>
+    <%= form.number_field :amount, step: 0.01, min: 0, required: true %>
+  </div>
+  <div>
+    <%= form.submit "Пополнить" %>
+  </div>
+<% end %>
+
 <h2>Доступные Игры</h2>
 <% @available_games.each do |game| %>
   <div>
-    <%= game.game_name %>
+    <%= game.game_name %> - <span>Цена: <%= number_to_currency(game.price, unit: "руб.") %></span>
     <%= link_to 'Добавить игру', new_client_client_game_path(@client, game_id: game.id) %>
   </div>
 <% end %>

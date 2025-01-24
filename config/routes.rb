@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
   resources :clients do
     resources :client_games, only: [:new, :create, :index]
+    member do
+      post :replenish_balance
+    end
   end
   resources :games
   resources :posts
@@ -26,5 +29,7 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   get 'logout', to: 'sessions#destroy'
+
+  post 'replenish_balance', to: 'clients#replenish_balance'
 
 end

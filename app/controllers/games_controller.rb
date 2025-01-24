@@ -25,10 +25,15 @@ class GamesController < ApplicationController
 
     respond_to do |format|
       if @game.save
-        format.html { redirect_to @game, notice: "Game was successfully created." }
+        format.html { redirect_to @game, notice: "Игра успешно создана." }
         format.json { render :show, status: :created, location: @game }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        # Вывод ошибок в консоль для отладки
+        puts "Ошибки: #{@game.errors.full_messages}"
+
+        # Отображение ошибок пользователю
+        flash.now[:alert] = @game.errors.full_messages.join(", ")
+        format.html { render :new, status: :unprocessable_entity } # Возвращаемся к форме создания игры
         format.json { render json: @game.errors, status: :unprocessable_entity }
       end
     end

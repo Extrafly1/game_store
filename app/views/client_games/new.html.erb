@@ -2,6 +2,12 @@
 
 <h1>Добавить Игру для <%= @client.name %></h1>
 
+<!-- Отображение текущего баланса клиента -->
+<h2>Текущий баланс: <%= number_to_currency(@current_balance, unit: 'руб.') %></h2>
+
+<!-- Отображение цены игры -->
+<h2>Цена игры: <%= number_to_currency(@game.price, unit: 'руб.') %></h2>
+
 <% if flash[:alert] %>
   <p style="color: red;"><%= flash[:alert] %></p>
 <% end %>
