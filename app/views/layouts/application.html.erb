@@ -30,20 +30,24 @@
 
     <!-- Import JavaScript files -->
     <%= javascript_importmap_tags %>
+
   </head>
 
   <body>
-    <!-- Main navigation -->
-    <nav>
-      <ul class="nav-links">
-        <li><%= link_to 'Главная', root_path %></li> <!-- Ссылка на главную страницу -->
-        <li><%= link_to 'Таблица клиентов', clients_path %></li> <!-- Ссылка на таблицу клиентов -->
-        <li><%= link_to 'Игры', games_path %></li> <!-- Ссылка на страницу с играми -->
-      </ul>
-    </nav>
-    
-    <!-- Main content of the page -->
+  <!-- Main navigation -->
+  <nav class="fixed-header">
+    <ul class="nav-links">
+      <li><%= link_to 'Главная', root_path %></li>
+      <li><%= link_to 'Таблица клиентов', clients_path %></li>
+      <li><%= link_to 'Игры', games_path %></li>
+    </ul>
+  </nav>
+  
+  <!-- Main content of the page -->
+  <div class="main-content">
     <%= yield %>
-  </body>
+  </div>
+</body>
+
 </html>
 

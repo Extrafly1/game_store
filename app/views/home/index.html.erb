@@ -1,3 +1,31 @@
+<style>
+nav ul {
+    display: flex;
+    justify-content: center; /* Центрируем список */
+    list-style: none; /* Убираем стандартные маркеры списка */
+    padding: 0;
+    margin: 20px 0; /* Отступы сверху и снизу */
+}
+
+nav ul li {
+    margin: 0 15px; /* Отступы между элементами списка */
+}
+
+nav ul li a {
+    background-color: #24d6af;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 7px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+nav ul li a:hover {
+    background-color: #0d8d71;
+}
+</style>
+
 <% content_for :title, "Главная страница" %>
 
 <h1>Добро пожаловать в Game Store</h1>

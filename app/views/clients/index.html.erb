@@ -4,30 +4,32 @@
 
 <h1>Clients</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Balance</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @clients.each do |client| %>
-      <tr>
-        <td><%= client.name %></td>
-        <td><%= client.email %></td>
-        <td><%= number_to_currency(client.balance) %></td>
-        <td>
-          <%= link_to 'Show', client_path(client) %> |
-          <%= link_to 'Edit', edit_client_path(client) %> |
-          <%= link_to 'Delete', client_path(client), method: :delete, data: { confirm: 'Are you sure?' } %>
-        </td>
+<div id="section5">
+  <table id="board">
+    <thead>
+      <tr class="cell revealed">
+        <th>Name</th>
+        <th>Email</th>
+        <th>Balance</th>
+        <th>Actions</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @clients.each do |client| %>
+        <tr class="cell">
+          <td><%= client.name %></td>
+          <td><%= client.email %></td>
+          <td><%= number_to_currency(client.balance) %></td>
+          <td>
+            <%= link_to 'Show', client_path(client), class: 'btn' %>
+            <%= link_to 'Edit', edit_client_path(client), class: 'btn' %>
+            <%= link_to 'Delete', client_path(client), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
-<%= link_to 'New client', new_client_path %>
+<%= link_to 'New client', new_client_path, class: 'btn new-client-btn' %>
 
