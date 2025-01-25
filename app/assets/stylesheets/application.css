@@ -198,3 +198,8 @@ a:hover {
 div {
     color: white;
 }
+
+label,
+input {
+    color: black;
+}
