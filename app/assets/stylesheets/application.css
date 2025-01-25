@@ -167,13 +167,9 @@ a:hover {
     left: 0;
     width: 100%;
     background-color: #333;
-    /* Цвет фона */
     z-index: 1000;
-    /* Поверх других элементов */
     padding: 10px 20px;
-    /* Отступы */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    /* Тень для выделения */
 }
 
 .nav-links {
@@ -190,7 +186,6 @@ a:hover {
 
 .nav-links a {
     color: #fff;
-    /* Белый цвет текста */
     text-decoration: none;
     font-size: 1rem;
     transition: color 0.3s;
@@ -198,5 +193,8 @@ a:hover {
 
 .nav-links a:hover {
     color: #5cb85c;
-    /* Зеленый цвет при наведении */
+}
+
+div {
+    color: white;
 }
