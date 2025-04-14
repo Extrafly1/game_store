@@ -20,7 +20,7 @@ gem "jbuilder"
 # ТО ЧТО ДОБАВИЛ Я
 gem 'bcrypt', '~> 3.1.7'
 gem 'activerecord-sqlserver-adapter', '~> 8.0.1'
-gem 'tiny_tds', '~> 2.1'
+gem 'tiny_tds', '~> 3.2'
 
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
